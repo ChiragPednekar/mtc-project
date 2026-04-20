@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signal Vector Spaces</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header class="header">
+        <h1>Signal Vector Spaces</h1>
+        <p class="subtitle">Interactive Linear Algebra Engine for Signal Processing</p>
+    </header>
+
+    <main class="container">
+        <!-- Controls Panel -->
+        <aside class="panel controls-section">
+            <div class="control-group group-1">
+                <h3>Signal 1 (x)</h3>
+                
+                <div class="input-row">
+                    <label>Waveform Type</label>
+                    <select id="type1">
+                        <option value="sine">Sine Wave</option>
+                        <option value="cosine">Cosine Wave</option>
+                        <option value="square">Square Wave</option>
+                        <option value="random">Random Noise</option>
+                    </select>
+                </div>
+
+                <div class="input-row">
+                    <label>Frequency (Hz) <span id="freq1-val" class="slider-val">5.0</span></label>
+                    <input type="range" id="freq1" min="1" max="20" step="0.5" value="5">
+                </div>
+
+                <div class="input-row">
+                    <label>Amplitude <span id="amp1-val" class="slider-val">1.0</span></label>
+                    <input type="range" id="amp1" min="0.1" max="5" step="0.1" value="1">
+                </div>
+
+                <div class="input-row">
+                    <label>Add Noise <span id="noise-val" class="slider-val">Off</span></label>
+                    <input type="range" id="noise" min="0" max="20" step="1" value="0">
+                </div>
+            </div>
+
+            <div class="control-group group-2">
+                <h3>Signal 2 (y)</h3>
+                
+                <div class="input-row">
+                    <label>Waveform Type</label>
+                    <select id="type2">
+                        <option value="cosine">Cosine Wave</option>
+                        <option value="sine">Sine Wave</option>
+                        <option value="square">Square Wave</option>
+                        <option value="random">Random Noise</option>
+                    </select>
+                </div>
+
+                <div class="input-row">
+                    <label>Frequency (Hz) <span id="freq2-val" class="slider-val">5.0</span></label>
+                    <input type="range" id="freq2" min="1" max="20" step="0.5" value="5">
+                </div>
+
+                <div class="input-row">
+                    <label>Amplitude <span id="amp2-val" class="slider-val">1.0</span></label>
+                    <input type="range" id="amp2" min="0.1" max="5" step="0.1" value="1">
+                </div>
+            </div>
+        </aside>
+
+        <!-- Visualization Panel -->
+        <section class="panel">
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-label">Inner Product ⟨x, y⟩</div>
+                    <div class="metric-value" id="val-dot">0.000</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Orthogonality Check</div>
+                    <div id="val-ortho" class="ortho-badge ortho-false">Checking...</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Energy of x ||x||</div>
+                    <div class="metric-value" id="val-norm1">0.000</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Energy of y ||y||</div>
+                    <div class="metric-value" id="val-norm2">0.000</div>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <canvas id="signalsChart"></canvas>
+            </div>
+            <div class="chart-container" style="margin-top: 1rem;">
+                <canvas id="projectionChart"></canvas>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
